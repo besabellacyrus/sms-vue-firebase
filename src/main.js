@@ -5,6 +5,7 @@ import router from "./router";
 import store from "./store";
 import axios from "axios";
 import firebase from "firebase/app";
+console.log({ ddd: process.env.VUE_APP_FIREBASE_API_KEY })
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
