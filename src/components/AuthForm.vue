@@ -14,7 +14,10 @@
         placeholder="Password"
       >
     </div>
+    <br>
     <button type="submit">{{ label }}</button>
+    <br>
+    <span class="error">{{ errorMessage }}</span>
   </form>
 </template>
 
@@ -24,11 +27,14 @@ export default {
     label: {
       type: String,
       required: true
+    },
+    errorMessage: {
+      type: String,
+      default: ''
     }
   },
   data () {
     return {
-      error: '',
       email: '',
       password: ''
     }
