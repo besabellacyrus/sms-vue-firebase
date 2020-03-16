@@ -4,32 +4,22 @@
       v-if="error"
       class="error"
     >{{error.message}}</div>
-    <form @submit.prevent="register">
-      Register
-      <div class="email">
-        <input
-          type="email"
-          v-model="email"
-          placeholder="Email"
-        >
-      </div>
-      <div class="password">
-        <input
-          type="password"
-          v-model="password"
-          placeholder="Password"
-        >
-      </div>
-      <button type="submit">Register</button>
-    </form>
+    <AuthForm
+      label="Register"
+      @submit-form="register"
+    />
   </div>
 </template>
 
 <script>
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import AuthForm from "../components/AuthForm";
 
 export default {
+  components: {
+    AuthForm
+  },
   data () {
     return {
       error: '',
@@ -38,11 +28,11 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async register (data) {
       try {
         const user =
           await firebase.auth().createUserWithEmailAndPassword(
-            this.email, this.password
+            data.email, data.password
           )
         this.$router.replace({ name: 'secret' })
         console.log({ user })
